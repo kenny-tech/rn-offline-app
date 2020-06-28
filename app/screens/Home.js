@@ -1,28 +1,35 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Alert } from 'react-native';
+
+import Mybutton from '../components/Mybutton';
+import Mytext from '../components/Mytext'
 
 const Home = () => {
     return (
-        <View style={styles.container}>
-            <View style={styles.titleView}>
-                <Text style={styles.titleText}>SQLite Example</Text>
-            </View>
+        <View style={{flex: 1, backgroundColor: 'white', flexDirection: 'column'}}>
+            <Mytext text="SQLite Example"/>
+            <Mybutton 
+                title="Register" 
+                customClick={() => Alert.alert('Register', 'You clicked on Register button')}
+            />
+            <Mybutton
+                title="Update"
+                customClick={() => Alert.alert('Update', 'You clicked on Update button')}
+            />
+            <Mybutton
+                title="View"
+                customClick={() => Alert.alert('View', 'You clicked on View button')}
+            />
+            <Mybutton
+                title="View All"
+                customClick={() => Alert.alert('View All', 'You clicked on View All button')}
+            />
+            <Mybutton
+                title="Delete"
+                customClick={() => Alert.alert('Delete', 'You clicked on Delete button')}
+            />
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'flex-start',
-    },
-    titleView: {
-        margin: 20,
-    },
-    titleText: {
-        fontSize: 20,
-        fontWeight: 'bold'
-    }
-})
 
 export default Home;
