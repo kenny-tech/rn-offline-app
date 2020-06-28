@@ -4,7 +4,9 @@ import { View, Text, StyleSheet } from 'react-native';
 const Home = () => {
     return (
         <View style={styles.container}>
-            <Text>Home Screen</Text>
+            <View style={styles.titleView}>
+                <Text style={styles.titleText}>SQLite Example</Text>
+            </View>
         </View>
     )
 }
@@ -12,8 +14,14 @@ const Home = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
+        justifyContent: 'flex-start',
+    },
+    titleView: {
+        margin: 20,
+    },
+    titleText: {
+        fontSize: 20,
+        fontWeight: 'bold'
     }
 })
 
