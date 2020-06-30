@@ -5,7 +5,7 @@ import { openDatabase } from 'react-native-sqlite-storage';
 import Mybutton from '../components/Mybutton';
 import Mytext from '../components/Mytext'
 
-const Home = () => {
+const Home = ({ navigation }) => {
 
     let db = openDatabase({ name: 'userDatabase.db'});
 
@@ -37,7 +37,7 @@ const Home = () => {
             <Mytext text="SQLite Example"/>
             <Mybutton 
                 title="Register" 
-                customClick={() => Alert.alert('Register', 'You clicked on Register button')}
+                customClick={() => navigation.navigate('Register')}
             />
             <Mybutton
                 title="Update"
