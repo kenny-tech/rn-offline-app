@@ -3,16 +3,47 @@ import { View, ScrollView, KeyboardAvoidingView, Alert } from 'react-native';
 
 import Mytextinput from '../components/Mytextinput';
 import Mybutton from '../components/Mybutton'
+import  { DB } from '../model/db';
 
-const Register = () => {
-
-    const registerUser = () => {
-        Alert.alert('Registering user...');
-    }
+const Register = ({ navigation }) => {
 
     const [userName, setUserName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
-    const [address, setAddress] = useState('')
+    const [address, setAddress] = useState('');
+
+    const registerUser = () => {
+        if(userName.trim()!='' && phoneNumber.trim()!='' && address.trim()!='') {
+            //insert user
+            DB.transaction(function (tx) {
+                tx.executeSql('CREATE TABLE IF NOT EXISTS user (name, phone, address)');
+            }, function (error) {
+                console.log('Transaction Error: ' + error.message);
+            }, function () {
+                console.log("SQL executed fine");
+            });
+            DB.transaction((tx) => {
+                tx.executeSql('INSERT INTO user VALUES (?,?,?)', [userName, phoneNumber, address]);
+                console.log('tx: ',tx);
+                Alert.alert(
+                    'Success',
+                    'You are Registered Successfully',
+                    [
+                        {
+                            text: 'Ok',
+                            onPress: () => navigation.navigate('Home'),
+                        },
+                    ],
+                    { cancelable: false}
+                );
+              }, function (error) {
+                  console.log('Insert user error: ' + error);
+                  Alert.alert('Error', 'Registration Failed')
+            });
+        } else {
+            Alert.alert('Error', 'All fields are required');
+        }
+    }
+
     return (
         <View style={{backgroundColor: 'white', flex: 1}}>
             <ScrollView keyboardShouldPersistTaps='handled'>
