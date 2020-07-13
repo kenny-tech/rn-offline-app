@@ -12,18 +12,21 @@ const Register = ({ navigation }) => {
     const [address, setAddress] = useState('');
 
     const registerUser = () => {
+
         if(userName.trim()!='' && phoneNumber.trim()!='' && address.trim()!='') {
-            //insert user
+            console.log(userName, phoneNumber, address);
+
             DB.transaction(function (tx) {
-                tx.executeSql('CREATE TABLE IF NOT EXISTS user (name, phone, address)');
-            }, function (error) {
-                console.log('Transaction Error: ' + error.message);
-            }, function () {
-                console.log("SQL executed fine");
-            });
+                // tx.executeSql('DROP TABLE IF EXISTS allusers');   
+                tx.executeSql('CREATE TABLE IF NOT EXISTS allusers (name, phone, address)');
+          
+                }, function (error) {
+                    console.log('Transaction error: ' + error.message);
+                }, function () {
+                    console.log('Successfully loaded allusers table');
+                });
             DB.transaction((tx) => {
-                tx.executeSql('INSERT INTO user VALUES (?,?,?)', [userName, phoneNumber, address]);
-                console.log('tx: ',tx);
+                tx.executeSql('INSERT INTO allusers VALUES (?,?,?)', [userName, phoneNumber, address]);
                 Alert.alert(
                     'Success',
                     'You are Registered Successfully',
@@ -35,9 +38,9 @@ const Register = ({ navigation }) => {
                     ],
                     { cancelable: false}
                 );
-              }, function (error) {
-                  console.log('Insert user error: ' + error);
-                  Alert.alert('Error', 'Registration Failed')
+                console.log("User successfully created");
+            }, function (tx, err) {
+                console.log('Insert users error ' + err);
             });
         } else {
             Alert.alert('Error', 'All fields are required');

@@ -22,7 +22,7 @@ const Home = ({ navigation }) => {
             />
             <Mybutton
                 title="View All"
-                customClick={() => Alert.alert('View All', 'You clicked on View All button')}
+                customClick={() => navigation.navigate('ViewUsers')}
             />
             <Mybutton
                 title="Delete"
