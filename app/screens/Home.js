@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Alert } from 'react-native';
+import { View } from 'react-native';
 
 import Mybutton from '../components/Mybutton';
 import Mytext from '../components/Mytext'
@@ -26,7 +26,7 @@ const Home = ({ navigation }) => {
             />
             <Mybutton
                 title="Delete"
-                customClick={() => Alert.alert('Delete', 'You clicked on Delete button')}
+                customClick={() => navigation.navigate('DeleteUser')}
             />
         </View>
     )

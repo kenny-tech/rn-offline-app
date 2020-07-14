@@ -7,6 +7,7 @@ import RegisterScreen from './app/screens/Register';
 import ViewUsersScreen from './app/screens/ViewUsers';
 import UpdateUserScreen from './app/screens/UpdateUser';
 import ViewUserScreen from './app/screens/ViewUser';
+import DeleteUserScreen from './app/screens/DeleteUser';
 
 const Stack = createStackNavigator();
 
@@ -18,6 +19,7 @@ function MyStack() {
       <Stack.Screen name="ViewUsers" component={ViewUsersScreen} />
       <Stack.Screen name="UpdateUser" component={UpdateUserScreen} />
       <Stack.Screen name="ViewUser" component={ViewUserScreen} />
+      <Stack.Screen name="DeleteUser" component={DeleteUserScreen} />
     </Stack.Navigator>
   );
 }
