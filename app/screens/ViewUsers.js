@@ -15,7 +15,7 @@ const ViewUsers = () => {
 
     const getUsers = () => {
         DB.transaction(tx => {
-            tx.executeSql('SELECT * FROM allusers', [], (tx, results) => {
+            tx.executeSql('SELECT rowid, name, phone, address FROM allusers', [], (tx, results) => {
                 let temp = [];
                 console.log(results.rows);
                 for (let i = 0; i < results.rows.length; ++i) {
@@ -38,6 +38,7 @@ const ViewUsers = () => {
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item }) => (
                     <View style={{ backgroundColor: 'white', padding: 20 }}>
+                        <Text>ID: {item.rowid}</Text>
                         <Text>Name: {item.name}</Text>
                         <Text>Phone: {item.phone}</Text>
                         <Text>Address: {item.address}</Text>
