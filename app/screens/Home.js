@@ -14,7 +14,7 @@ const Home = ({ navigation }) => {
             />
             <Mybutton
                 title="Update"
-                customClick={() => Alert.alert('Update', 'You clicked on Update button')}
+                customClick={() => navigation.navigate('UpdateUser')}
             />
             <Mybutton
                 title="View"
