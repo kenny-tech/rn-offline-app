@@ -18,7 +18,7 @@ const Home = ({ navigation }) => {
             />
             <Mybutton
                 title="View"
-                customClick={() => Alert.alert('View', 'You clicked on View button')}
+                customClick={() => navigation.navigate('ViewUser')}
             />
             <Mybutton
                 title="View All"
